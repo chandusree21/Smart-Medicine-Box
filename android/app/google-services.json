@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "389798987903",
+    "project_id": "smart-medicine-box-44741",
+    "storage_bucket": "smart-medicine-box-44741.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389798987903:android:1b5dbba7cf3df5fb3c974a",
+        "android_client_info": {
+          "package_name": "com.example.smart_medicine_box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389798987903-v6gic1hh354nuo3pr2a0k8man6anulso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU5YFeFH6AFWZZCall2vvEd7EcnBUdW6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389798987903-v6gic1hh354nuo3pr2a0k8man6anulso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
