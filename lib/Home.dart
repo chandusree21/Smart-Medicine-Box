@@ -9,9 +9,6 @@ import 'package:smart_medicine_box/functions/modifyMed.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
-
-
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -31,7 +28,7 @@ class _HomeState extends State<Home> {
             ElevatedButton(
               style: style,
               onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const addmed()));
+                Navigator.of(context).push(MaterialPageRoute(builder  : (context)=>const addmed()));
               } ,
               child: const Text('Add Medicine'),
             ),

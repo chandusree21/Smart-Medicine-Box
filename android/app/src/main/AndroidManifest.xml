@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smart_medicine_box">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="smart_medicine_box"
         android:name="${applicationName}"

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:smart_medicine_box/functions/addmed.dart.';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -86,10 +87,19 @@ class _delMedState extends State<delMed> {
                       .doc(
                       _auth.currentUser!.uid)
                       .update({dropdownvalue:FieldValue.delete()});
+                  await _firestore
+                      .collection('users')
+                      .doc(
+                      _auth.currentUser!.uid)
+                      .update(
+                    {
+                      'Is'+'$dropdownvalue':false,
+                    },
+                  );
                     //SetOptions(merge: true),
                   Navigator.pop(context);
                   Fluttertoast.showToast(
-                      msg: "Medicine updated successfully",
+                      msg: "Medicine deleted successfully",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       timeInSecForIosWeb: 1,

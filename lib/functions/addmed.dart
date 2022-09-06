@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/colors.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
+import 'package:smart_medicine_box/functions/Notification.dart';
+import 'dart:async';
+
+import '../MyHomePage.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -26,24 +32,13 @@ class _addmedState extends State<addmed> {
   ];
   String medName = "No Value Entered";
   TimeOfDay selectedTime = TimeOfDay.now();
+  late Timer mytimer;
 
-  /*
-  dynamic data;
-  Future<dynamic> getData() async {
-    final DocumentReference document =   _firestore.collection('users').doc(_auth.currentUser!.uid);
-    await document.get().then<dynamic>(( DocumentSnapshot snapshot) async{
-      setState(() {
-        data =snapshot.data;
-      });
-    });
-  }
-
-  @override
-  void initState() {
+  void initState(){
+    //getUserData();
     super.initState();
-    getData();
+    NotificationApi.init();
   }
-   */
 
   @override
   Widget build(BuildContext context) {
@@ -137,19 +132,8 @@ class _addmedState extends State<addmed> {
                   color: Colors.blueGrey,
                   textColor: Colors.white,
                   onPressed: () async {
-                    /*
-                    FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(_auth.currentUser!.uid)
-                        .get()
-                        .then((DocumentSnapshot documentSnapshot) {
-                      if (documentSnapshot.exists) {
-                        print('Document data: ${documentSnapshot.data()}');
-                      } else {
-                        print('Document does not exist on the database');
-                      }
-                    });
-                     */
+                    final DocumentSnapshot doc = await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+                    if(doc['Is'+'$dropdownvalue']==false){
                     await _firestore
                         .collection('users')
                         .doc(
@@ -163,9 +147,28 @@ class _addmedState extends State<addmed> {
                               selectedTime.hour,
                           dropdownvalue+'.Time.Minute':
                               selectedTime.minute,
+                          'Is'+'$dropdownvalue':true,
                         },
-                      //SetOptions(merge: true),
                     );
+                    var m = med_controller.text.trim();
+                    //FlutterAlarmClock.createAlarm(selectedTime.hour,selectedTime.minute,title: "Time to take $m in $dropdownvalue");
+                    var dt = DateTime.now();
+                    // mytimer = Timer.periodic(Duration(seconds: 10), (timer) {
+                    //   //FlutterAlarmClock.createAlarm(dt.hour, dt.minute+2,title: "Time to take $m in $dropdownvalue");
+                    // });
+
+                    // if(dt.hour == selectedTime.hour && dt.minute == selectedTime.minute){
+                    //   NotificationApi.showNotification(
+                    //     title: "Notification",
+                    //     body: "Time to take $m in $dropdownvalue",
+                    //   );
+                    // }
+                    NotificationApi.showDailyAtTimeNotification(
+                        title: "Medication",
+                        body: "Time to take $m in $dropdownvalue",
+                        time: Time(selectedTime.hour,selectedTime.minute,00)
+                    );
+
                     Navigator.pop(context);
                     Fluttertoast.showToast(
                         msg: "Medicine added successfully",
@@ -176,19 +179,25 @@ class _addmedState extends State<addmed> {
                         textColor: Colors.white,
                         fontSize: 14.0
                     );
-                    /*
+                    }
                     else{
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => MyHomePage(),
+                        ),
+                            (route) => false,
+                      );
                       Fluttertoast.showToast(
-                          msg: "Slot already filled",
+                          msg: "Slot is already filled Please Choose another slot?",
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.green,
+                          backgroundColor: Colors.red,
                           textColor: Colors.white,
                           fontSize: 14.0
                       );
-                     }
-                     */
+                    }
                   },
                   child: Text('Add'),
                 ),

@@ -104,25 +104,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: _widgetOptions.elementAt(_selectedIndex),
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blueGrey,
-
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'History',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white54,
-        onTap: _onItemTapped,
-
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // bottomNavigationBar: BottomNavigationBar(
+      //   backgroundColor: Colors.blueGrey,
+      //
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //     ),
+      //     // BottomNavigationBarItem(
+      //     //   icon: Icon(Icons.business),
+      //     //   label: 'History',
+      //     // ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.white,
+      //   unselectedItemColor: Colors.white54,
+      //   onTap: _onItemTapped,
+      //
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

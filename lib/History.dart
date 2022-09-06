@@ -15,9 +15,30 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  Future<DocumentSnapshot<Map<String, dynamic>>> v = _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+
+  // Stream<DocumentSnapshot> provideDocumentFieldStream() {
+  //   return _firestore
+  //       .collection('users')
+  //       .doc(_auth.currentUser!.uid)
+  //       .snapshots();
+  // }
   @override
   Scaffold build(BuildContext context) {
+    // StreamBuilder<DocumentSnapshot>(
+    //     stream: provideDocumentFieldStream(),
+    //     builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+    //       if (snapshot.hasData) {
+    //         //snapshot -> AsyncSnapshot of DocumentSnapshot
+    //         //snapshot.data -> DocumentSnapshot
+    //         //snapshot.data.data -> Map of fields that you need :)
+    //
+    //         Map<String, dynamic> documentFields = snapshot.data!.data as Map<String, dynamic>;
+    //         //TODO Okay, now you can use documentFields (json) as needed
+    //
+    //         return Text(documentFields['name']);
+    //       }
+    //     }
+    // );
     return const Scaffold(
       body: Center(
         child: Text("History",
@@ -28,4 +49,16 @@ class _HistoryState extends State<History> {
       ),
     );
   }
+  // Widget build(BuildContext context) {
+  //   return StreamBuilder(
+  //       stream: _firestore.collection('users').doc(_auth.currentUser!.uid).snapshots(),
+  //       builder: (context, snapshot) {
+  //         if (!snapshot.hasData) {
+  //           return new Text("Loading");
+  //         }
+  //         var userDocument = snapshot.data;
+  //         return Text(snapshot.data!["name"]);
+  //       }
+  //   );
+  // }
 }

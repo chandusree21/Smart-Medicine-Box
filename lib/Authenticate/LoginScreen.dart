@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_medicine_box/Authenticate/registerScreen.dart';
 import 'package:smart_medicine_box/MyHomePage.dart';
+import 'package:after_layout/after_layout.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -17,7 +18,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with AfterLayoutMixin<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _formKeyOTP = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -32,8 +33,14 @@ class _LoginScreenState extends State<LoginScreen> {
   var verificationCode = '';
 
   //Form controllers
+  // @override
+  // void initState() {
+  //
+  // }
+
   @override
-  void initState() {
+  void afterFirstLayout(BuildContext context) {
+    // Calling the same function "after layout" to resolve the issue.
     if (_auth.currentUser != null) {
       Navigator.pushAndRemoveUntil(
         context,
