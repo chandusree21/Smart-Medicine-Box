@@ -1,16 +1,61 @@
-# smart_medicine_box
+# 🧠 Smart Medicine Box (IoT Pill Reminder & Refill System)
 
-Medicine Remainder
+**An IoT-enabled medicine dispenser with real-time reminders, pill-level tracking, and automated refill notifications—designed for better medication adherence.**
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Overview
 
-A few resources to get you started if this is your first Flutter project:
+- **Platform**: Flutter Android app + Raspberry Pi microcontroller  
+- **Purpose**: Alerts users to take medications on time and notifies pharmacies when refills are needed  
+- **Audience**: Elderly individuals, chronic patients, caregivers, and pharmacists
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+---
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🌟 Features
+
+- 💡 **Scheduled Reminders**: App notifications, LED blinking, and buzzer alerts at dosing times  
+- ⚖️ **Pill Tracking**: Load cell (weight sensor) tracks consumption and pill levels  
+- 📲 **Refill Alerts**: Automatically sends SMS or app alerts to pharmacies when stock is low  
+- 👥 **Caretaker Notifications**: Alerts to guardians if a dose is missed  
+- ☁️ **Real-time Sync**: Firebase Firestore backend for data persistence and user authentication  
+
+---
+
+## 🧰 Tech Stack
+
+| Component         | Tech / Tools                    |
+|------------------|----------------------------------|
+| Mobile App       | Flutter, Dart, Firebase         |
+| Backend          | Firebase Firestore              |
+| Hardware         | Raspberry Pi, Load Cell (HX711), PIR Sensor, LEDs |
+| Languages        | Dart (Flutter), Python (Pi)     |
+
+---
+
+## 📱 Android App
+
+- User login via phone/OTP  
+- Manage medication schedules (CRUD)  
+- Real-time alerts linked with hardware  
+- Caregiver and pharmacy notifications
+
+---
+
+## 🖥️ Hardware Setup
+
+1. Raspberry Pi + HX711 load cell for pill weight monitoring  
+2. LEDs, buzzer, and PIR motion sensor for interactive alerts  
+3. Python script interfaces with Firebase to monitor levels and dispatch refill notices  
+
+---
+
+## 🛠️ Setup Instructions
+
+### Mobile App
+
+```bash
+git clone https://github.com/chandusree21/Smart-Medicine-Box.git
+cd Smart-Medicine-Box/app
+flutter pub get
+flutter run --target lib/main.dart
